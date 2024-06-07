@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>Main Page</title>
+</head>
+<body>
+    <div style="display:flex; padding: 100px;; gap:50px; justify-content:space-between" >
+        <div>
+            <h2 class="text-3xl font-bold leading-tight text-black sm:text-4xl" >Add new member </h2>
+            <section>
+                <div class="grid grid-cols-1 lg:grid-cols-2">
+                    <div class="flex items-center justify-center ">
+                      <div class="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md">
+                
+                        <form  method="POST" class="mt-8">
+                          <div class="space-y-5">
+                            <div>
+                              <label for="" class="text-base font-medium text-gray-900">
+                                 Employ name : 
+                              </label>
+                              <div class="mt-2">
+                                <input
+                                  class="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                                  type="name"
+                                  name="name"
+                                  placeholder="your name "
+                                />
+                              </div>
+                            </div>
+                            <div>
+                                <label for="" class="text-base font-medium text-gray-900">
+                                   Title 
+                                </label>
+                                <div class="mt-2">
+                                  <input
+                                    class="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                                    type="title"
+                                    name="title"
+                                    placeholder="your title "
+                                  />
+                                </div>
+                              </div>
+                              <div>
+                                <label for="" class="text-base font-medium text-gray-900">
+                                  Role 
+                                </label>
+                                <div class="mt-2">
+                                  <input
+                                    class="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                                    type="role"
+                                    name="role"
+                                    placeholder="your role "
+                                  />
+                                </div>
+
+      <button 
+  class=" mt-6 inline-flex items-center rounded-md bg-black px-3 py-2 text-sm font-semibold text-white hover:bg-black/80"
+> Submit
+</button>
+
+</form>
+
+
+                              </div>
+                            <div>
+            </section>
+
+        </div>
+     <div> 
+        <h2 class="text-3xl font-bold leading-tight text-black sm:text-4xl" > List of Employees </h2>
+
+        <section class="mx-auto w-full max-w-7xl px-4 py-4">
+            <div class="flex flex-col space-y-4 md:flex-row md:items-center md:justify-between md:space-y-0">
+            
+              <div>
+            
+              </div>
+            </div>
+            <div class="mt-6 flex flex-col">
+              <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                  <div class="overflow-hidden border border-gray-200 md:rounded-lg">
+                    <table class="min-w-full divide-y divide-gray-200">
+                      <thead class="bg-gray-50">
+                        <tr>
+                          <th
+                            scope="col"
+                            class="px-4 py-3.5 text-left text-sm font-normal text-gray-700"
+                          >
+                            <span>Employee</span>
+                          </th>
+                          <th
+                            scope="col"
+                            class="px-12 py-3.5 text-left text-sm font-normal text-gray-700"
+                          >
+                            Title
+                          </th>
+                        
+                          <th
+                            scope="col-3"
+                            class="px-4 py-3.5 text-left text-sm font-normal text-gray-700"
+                          >
+                             Role
+                          </th>
+                       
+                        </tr>
+                      </thead>
+                      <tbody class="divide-y divide-gray-200 bg-white">
+
+                        <% data.forEach((item)=>{%>
+                          <tr>
+                            <td class="whitespace-nowrap px-4 py-4">
+                              <div class="flex items-center">
+                                <div class="h-10 w-10 flex-shrink-0">
+                                  <img
+                                    class="h-10 w-10 rounded-full object-cover"
+                                    src="https://images.unsplash.com/photo-1628157588553-5eeea00af15c?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1160&amp;q=80"
+                                    alt=""
+                                  />
+                                </div>
+                                <div class="ml-4">
+                                  <div class="text-sm font-medium text-gray-900">
+                                    <%= item.name %>
+                                  </div>
+                                  
+                                </div>
+                              </div>
+                            </td>
+                            <td class="whitespace-nowrap px-12 py-4">
+                              <div class="text-sm text-gray-900 ">   <%= item.title %></div>
+                              
+                            </td>
+                          
+                            <td class="whitespace-nowrap px-4 py-4 text-sm text-gray-700">
+                              <%= item.role%>
+                            </td>
+                            <td class="whitespace-nowrap px-4 py-4 text-sm text-gray-700">
+                              <form action='/stu/deletedoc/<%= item._id %>'method="get">
+                                <button type="submit">delete</button>
+                               </form>
+                            </td>
+                            <td>
+                             <form action='/stu/edit/<%= item._id %>'method="GET">
+                              <button type="submit">Update</button>
+                             </form>
+                            </td>
+                          
+                      </tr>                               
+
+                          <%}) %>
+                    
+                  
+                      </tbody>
+
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          
+
+    </div>
+    </div>
+     
+</body>
+</html>
